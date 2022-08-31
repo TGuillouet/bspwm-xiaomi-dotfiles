@@ -1,0 +1,108 @@
+$bg: #24283b;
+$scale-background: rgba(255, 255, 255, 0.1);
+$foreground: #c0caf5;
+
+$black: #24283B;
+$gray: #565F89;
+$red: #F7768E;
+$green: #73DACA;
+$yellow: #E0AF68;
+$blue: #7AA2F7;
+$magenta: #BB9AF7;
+$cyan: #7DCFFF;
+$white: $foreground;
+
+* { all: unset; }
+
+window {
+	font-family: Phosphor;
+}
+
+.spaces, .system {
+	border-radius: 5px;
+
+	color: $white;
+	background-color: $bg;
+}
+
+.spaces {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.system {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.icon {
+  font-size: 1.3rem;
+  margin: .2rem 0 .7rem 0;
+}
+
+.volume-icon {
+  color: $green;
+}
+
+.brightness-icon {
+  color: $yellow;
+}
+
+.wifi-icon {  
+  color: $magenta;
+}
+
+.bribar trough highlight {
+  background-color: $yellow;
+  border-radius: 5px;
+}
+
+.volbar trough highlight {
+  background-color: $green;
+  border-radius: 5px;
+}
+
+scale trough {
+	all: unset;
+	background-color: $scale-background;
+	border-radius: 5px;
+	min-height: 80px;
+	min-width: 10px;
+	margin: .3rem 0 .3rem 0;
+}
+
+.control {
+	padding-bottom: 20px;
+}
+
+/* Powermenu */
+.button-bspres, .button-reb, .button-lock,
+.button-quit, .button-off{
+  padding: .2rem 0 .2rem 0;
+}
+.button-off{
+  margin-bottom: 0;
+  color: $red;
+}
+.button-bspres{
+  color: $green;
+}
+.button-reb{
+  color: $yellow
+}
+.button-quit{
+  color: $magenta;
+}
+.button-lock{
+  color: $blue;
+}
+
+.clock {
+  font-family: 'FiraCode Nerd font';
+  font-weight: bold;
+  margin: .5rem .5rem .5rem .5rem;
+
+  border-radius: 5px;
+  background-color: $gray;
+  padding: .4rem 0 .4rem 0;
+}

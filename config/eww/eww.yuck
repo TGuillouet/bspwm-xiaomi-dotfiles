@@ -1,0 +1,156 @@
+; Windows
+(defwindow workspaces
+  	:stacking "fg"
+  	:windowtype "normal"
+  	:wm-ignore true
+  	:geometry (geometry
+		:anchor "top left"
+		:x 8
+		:y 15
+            	:width 49
+            	:height "30%")
+	(box :class "layout-box" :orientation "vertical"
+		(spaces)))
+
+(defwindow system
+	:stacking "fg"
+	:wm-ignore false
+	:hexpand "false"
+	:vexpand "false"
+	:geometry (geometry
+		    :anchor "bottom left"
+		    :x 8
+		    :y -15
+		    :width 49
+		    :height "35%")
+		(end))
+
+; Spaces
+(defwidget spaces []
+  	(box :orientation "vertical" :class "spaces"
+		(label :text "﯉")
+		(label :text "")
+		(label :text "")
+		(label :text "") 
+		(label :text "")
+		(label :text "")))
+
+; System widget
+(defwidget end []
+	(box :orientation "v" 
+		 :space-evenly "false" 
+		 :valign "end" 
+		 :spacing 5
+		(control)))
+
+; Control
+;; Control Panel Widgets ;;	
+(defwidget control []
+	(box :orientation "v" 
+		 :space-evenly false  
+		 :class "control"
+		(wifi)
+		(bright)
+		(volume)
+		(clock)
+		(power)))
+
+; Sound
+(defwidget volume []
+	(eventbox :onhover "${EWW_CMD} update volum=true" 		
+			  :onhoverlost "${EWW_CMD} update volum=false"
+	(box      :orientation "v" 	  
+			  :space-evenly "false" 
+			  :spacing "2"
+	(revealer :transition "slideup" 
+			  :reveal volum
+			  :duration "550ms"
+	(scale    :class "volbar" 	  
+			  :value 50
+			  :orientation "v"      
+			  :flipped true 
+			  :tooltip "Volume: ${current-volume}%" 
+			  :max 101 
+			  :min 0 
+			  :onchange "amixer sset Master {}%" ))
+	(button   :tooltip "Volume: ${current-volume}%" :onclick "scripts/popup.sh audio"   :class "icon volume-icon" "﷎"))))
+(defpoll current-volume :initial 0 :interval "1s" "amixer sget Master | grep 'Mono:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defvar volum false)
+
+; Brightness
+(defwidget bright []
+	(eventbox :onhover "${EWW_CMD} update bright=true"   
+				:onhoverlost "${EWW_CMD} update bright=false"
+				(box    :orientation "v"  
+						:space-evenly "false"  
+					  :spacing 2
+				(revealer :transition "slideup" 
+						  :reveal bright   
+						:duration "550ms"
+				(scale :class "bribar" 
+					   :value current-brightness 
+					 :tooltip "Brightness: ${current-brightness}%" 
+					 :onchange "brightnessctl set {}%" 
+					 :orientation "v" 
+					 :flipped true 
+					 :max 101 
+					 :min 0))
+				(label :class "icon brightness-icon" 
+					   :text "﷯"))))
+(defpoll current-brightness :initial 0 :interval "1s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defvar bright false)
+
+; Network connected
+(defwidget wifi []
+	(box		:orientation "v"  
+				:tooltip wifi-name
+	(button		:onclick "scripts/popup.sh wifi" 
+				:class "icon wifi-icon" wifi-icon)))
+(defpoll wifi-icon :interval "1s" "scripts/wifi.sh icon")
+(defpoll wifi-name :interval "1s" "scripts/wifi.sh name")
+
+
+; Battery
+
+; Power menu
+(defwidget power []
+	(eventbox	:onhover "${EWW_CMD} update power=true"	
+				:onhoverlost "${EWW_CMD} update power=false" 
+	(box		:orientation "v"					
+				:space-evenly "false" 	 
+				:vexpand "false" 	
+				:class "powermenu"
+	(revealer	:transition "slideup"				
+				:reveal power			 
+				:duration "550ms"
+	(box		:orientation "v"					
+				:space-evenly "false"
+
+	(button   	:class "icon button-bspres"  			
+				:tooltip "BSPWM Restart" 
+				:onclick "bspc wm -r" "殺" )
+
+  	(button		:class "icon button-reb"					
+	  			:tooltip "Reboot"		 
+				:onclick "reboot"	"𢡊")
+
+	(button		:class "icon button-quit" 				
+				:tooltip "Logout" 		 
+				:onclick "killall bspwm" "ﶰ")
+
+	(button		:class "icon button-lock" 				
+				:tooltip "Lock Screen"	 
+				:onclick "betterlockscreen -l"	"ﳑ")))
+
+	(button		:class "icon button-off"					
+				:tooltip "Shutdown"		 
+				:onclick "shutdown now"	"累"))))
+(defvar power false)
+
+; Clock
+(defpoll hour :interval "1s" "date +%H")
+(defpoll min  :interval "1s" "date +%M")
+
+(defwidget clock []
+	(box :orientation "vertical" :class "clock"
+		hour min))
