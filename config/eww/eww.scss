@@ -52,6 +52,12 @@ window {
   color: $magenta;
 }
 
+.bat {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color: $blue;
+}
+
 .bribar trough highlight {
   background-color: $yellow;
   border-radius: 5px;
@@ -105,4 +111,35 @@ scale trough {
   border-radius: 5px;
   background-color: $gray;
   padding: .4rem 0 .4rem 0;
+}
+
+/* Desktops */
+
+.0:nth-child(1),
+.0:nth-child(3){
+  font-size: 1.5em;
+}
+.0:nth-child(2){
+  font-size: 1.4em;
+}
+.0:nth-child(4),
+.0:nth-child(5){
+  font-size: 1.6em;
+}
+.0:nth-child(6){
+  font-size: 1.7em;
+}
+.01,
+.03{
+  font-size: 1.5em;
+}
+.02{
+  font-size: 1.4em;
+}
+.04,
+.05{
+  font-size: 1.6em;
+}
+.06{
+  font-size: 1.7em;
 }

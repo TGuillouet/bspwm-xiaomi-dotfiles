@@ -22,18 +22,19 @@
 		    :x 8
 		    :y -15
 		    :width 49
-		    :height "35%")
+		    :height "38%")
 		(end))
 
 ; Spaces
 (defwidget spaces []
   	(box :orientation "vertical" :class "spaces"
-		(label :text "﯉")
-		(label :text "")
-		(label :text "")
-		(label :text "") 
-		(label :text "")
-		(label :text "")))
+		(label :text {current-space == "I"? "﯉": ""})
+		(label :text {current-space == "II"? "﯉": ""})
+		(label :text {current-space == "III"? "﯉": ""})
+		(label :text {current-space == "IV"? "﯉": ""})
+		(label :text {current-space == "V"? "﯉": ""})
+		(label :text {current-space == "VI"? "﯉": ""})))
+(deflisten current-space :initial "I" "scripts/workspaces.sh")
 
 ; System widget
 (defwidget end []
@@ -49,6 +50,7 @@
 	(box :orientation "v" 
 		 :space-evenly false  
 		 :class "control"
+		(bat)
 		(wifi)
 		(bright)
 		(volume)
@@ -111,6 +113,15 @@
 
 
 ; Battery
+(defwidget bat []
+	(box	:orientation "v"	
+			:space-evenly "false"
+	(label	:class "icon bat"		
+			:halign "end"		
+			:text battery	
+			:tooltip "Battery: ${battery-capacity}%")))
+(defpoll battery		   :initial 0 :interval "1s" "scripts/battery.sh icon")
+(defpoll battery-capacity :initial 0 :interval "1s" "scripts/battery.sh percent")
 
 ; Power menu
 (defwidget power []
