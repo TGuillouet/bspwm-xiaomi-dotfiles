@@ -8,7 +8,7 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -show run
+	~/.config/rofi/launcher.sh
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -119,3 +119,28 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Volume
+F1
+	~/.config/bin/volume mute
+
+F2
+	~/.config/bin/volume down
+
+F3
+	~/.config/bin/volume up
+
+# Brightness
+F4 
+	~/.config/bin/brightness down
+	
+F5
+	~/.config/bin/brightness up
+
+# Screenshot
+Print
+	scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png
+
+# Lockscreen
+alt + shift + x
+    betterlockscreen -l dim

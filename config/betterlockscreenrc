@@ -9,15 +9,15 @@ dim_level=40
 blur_level=1
 pixel_scale=10,1000
 solid_color=333333
-wallpaper_cmd="feh --bg-fill ~/.wallpapers/background-1.png"
+wallpaper_cmd="feh --bg-fill ~/.wallpapers/art-wallpaper-1.jpg"
 quiet=false
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 
 # default theme
 loginbox=00000066
 loginshadow=00000000
-locktext="Type password to unlock..."
-font="sans-serif"
+locktext="Type your password..."
+font="FiraCode Nerd Font"
 ringcolor=ffffffff
 insidecolor=00000000
 separatorcolor=00000000

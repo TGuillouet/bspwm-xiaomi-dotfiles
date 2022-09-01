@@ -68,7 +68,7 @@
 			  :reveal volum
 			  :duration "550ms"
 	(scale    :class "volbar" 	  
-			  :value 50
+			  :value current-volume
 			  :orientation "v"      
 			  :flipped true 
 			  :tooltip "Volume: ${current-volume}%" 

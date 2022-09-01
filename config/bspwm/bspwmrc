@@ -2,12 +2,12 @@
 
 picom -b
 
-feh --bg-center ~/.wallpapers/background-1.png
+feh --bg-fill ~/.wallpapers/mountain-night.jpg
 
 ~/.local/share/xborder/xborders --border-width 2 --border-radius 5 &
 
-# eww open workspaces
-# eww open system
+eww open workspaces
+eww open system
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
