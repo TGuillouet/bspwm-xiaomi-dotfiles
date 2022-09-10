@@ -28,23 +28,12 @@ yay -S picom-jonaburg-git \
         nerd-fonts-fira-code \
         xclip
 
-# Define the lightdm configuration and desktop entries
-
 # Copy the wallpapers
+cp wallpapers ~/.wallpapers
+
+# Backup the old .config
+mv ~/.config ~/.config.old
 
 # Install the config
 mkdir ~/.config/
-
-# Install the window manager and key bindings config
-
-# Install the rofi config
-
-# Install the shell (fish) config
-
-# Install the eww configuration
-
-# Dunst config
-
-# Kitty config
-
-# Ranger config
+cp -r ./config ~/.config
